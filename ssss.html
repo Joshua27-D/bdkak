@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<link rel="stylesheet" href="bd.css">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday SARA MAE!</title>
+    
+</head>
+<body>
+
+    <h1>Hi Po! hehe</h1>
+
+    <div class="input-container">
+        <h2>Enter Your Name</h2>
+        <input type="text" id="nameInput" placeholder="Your Name" style="padding: 10px; font-size: 1rem; border-radius: 5px; border: 1px solid #ccc;"/>
+        <button class="name-button" onclick="showMessage()">PISLITA KO!</button>
+    </div>
+
+    <h2 id="greetingMessage"></h2>
+    
+    <div class="confetti-container"></div>
+
+    <div id="heartContainer"></div>
+
+    <script>
+        function showMessage() {
+            const name = document.getElementById('nameInput').value.trim();
+            const greetingMessage = document.getElementById('greetingMessage');
+
+            if (name) {
+                greetingMessage.textContent = `🎉 Happy Birthday, ${name}! 🎉`;
+                startConfetti();
+                showHeart();
+            } else {
+                greetingMessage.textContent = "Imong ngalan lage ba!";
+            }
+
+            // Disable the button after click
+            document.querySelector('.name-button').disabled = true;
+            document.querySelector('.name-button').textContent = "Enjoy the Surprise!";
+        }
+
+        function startConfetti() {
+            const confettiContainer = document.querySelector('.confetti-container');
+            for (let i = 0; i < 100; i++) {
+                const confetti = document.createElement('div');
+                confetti.classList.add('confetti');
+                confetti.style.left = `${Math.random() * 100}%`;
+                confetti.style.animationDuration = `${Math.random() * 2 + 2}s`;
+                confetti.style.animationDelay = `${Math.random() * 2}s`;
+                confettiContainer.appendChild(confetti);
+            }
+        }
+
+        function showHeart() {
+            const heartContainer = document.getElementById('heartContainer');
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.top = `${Math.random() * 50 + 20}%`;
+            heart.style.left = `${Math.random() * 50 + 20}%`;
+            heartContainer.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove(); // Remove the heart after animation
+            }, 3000); // Heart stays for 3 seconds
+        }
+    </script>
+
+</body>
+</html>
